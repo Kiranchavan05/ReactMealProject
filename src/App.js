@@ -1,30 +1,23 @@
+import React, { useState, useCallback, useMemo } from 'react';
 
-import { useState } from 'react';
 import './App.css';
-import Header from './components/Layout/Header';
-import Meals from './components/Meals/Meals'
-import Cart from './components/Cart/Cart';
-import CartProvider from './store/CartProvider';
+import DemoList from './component/Demo/DemoList';
+import Button from './component/UI/Button';
 
 function App() {
-  
-  const [cartIsShown,setCartIsShown]=useState(false)
+  const [listTitle, setListTitle] = useState('My List');
 
-  const showCartHandler=()=>{
-    setCartIsShown(true)
-  }
+  const changeTitleHandler = useCallback(() => {
+    setListTitle('New Title');
+  }, []);
 
-  const hideCartHandler=()=>{
-    setCartIsShown(false)
-  }
+  // const listItems = useMemo(() => [5, 3, 1, 10, 9], []);
+
   return (
-    <CartProvider >
-      {cartIsShown && <Cart onClose={hideCartHandler}/>}
-      <Header onShowCart={showCartHandler}/>
-      <main>
-        <Meals />
-      </main>
-    </CartProvider>
+    <div className="app">
+      <DemoList   />
+      
+    </div>
   );
 }
 
